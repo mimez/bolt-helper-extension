@@ -152,4 +152,16 @@ class Helper
         return file_get_contents($path);
     }
 
+    public function contify(\Twig_Environment $env, $string)
+    {
+
+        $string = new \Twig_Markup(preg_replace_callback('#entries\((.*)\)#Ui', function($matches) use ($env) {
+            $options = (array)json_decode($matches[1]);
+            $options['contenttype'] = 'entries';
+            $contentIds = $this->getContentIdsByFilter($options);
+            return $env->render('templates/helper/entries.twig', ['contentids' => $contentIds]);
+        }, $string), 'utf-8');
+
+        return $string;
+    }
 }

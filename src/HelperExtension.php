@@ -19,4 +19,13 @@ class HelperExtension extends SimpleExtension
             'activemenuidentifier' => [[$helper, 'getActiveMenuIdentifier'], ['is_safe' => ['html']]],
         ];
     }
+
+    public function registerTwigFilters()
+    {
+        $helper = new Helper($this->container);
+
+        return [
+            'contify' => [[$helper, 'contify'], ['needs_environment' => true]],
+        ];
+    }
 }
