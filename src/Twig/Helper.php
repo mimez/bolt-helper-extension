@@ -159,7 +159,7 @@ class Helper
             $options = (array)json_decode($matches[1]);
             $options['contenttype'] = 'entries';
             $contentIds = $this->getContentIdsByFilter($options);
-            return $env->render('templates/helper/entries.twig', ['contentids' => $contentIds]);
+            return $env->render('templates/helper/entries.twig', ['contentids' => $contentIds, 'type' => 'teaser']);
         }, $string), 'utf-8');
 
         return $string;
