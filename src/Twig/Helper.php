@@ -73,7 +73,7 @@ class Helper
         $conditions['published'] = "content_id IN (SELECT id FROM bolt_entries WHERE status = 'published')";
 
         $q = "SELECT
-                content_id
+                DISTINCT content_id
               FROM
                 bolt_taxonomy" .
             (count($conditions) ? ' WHERE (' . implode(') AND (', $conditions) . ')': '') .
